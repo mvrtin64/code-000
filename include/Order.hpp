@@ -5,18 +5,18 @@
 #include <iostream>
 #include <memory>
 #include <vector>
-#include <IArticle.hpp>
-#include <ICustomer.hpp>
+#include <IOrder.hpp>
 
 using namespace std;
 
-class Order 
+class Order : public IOrder
 {
     public:
-        Order(string code, shared_ptr<ICustomer> customer, vector<shared_ptr<IArticle>> articles);
+        Order(string code);
         string getCode() const;
-        void showOrder();
-        
+        void setCustomer(shared_ptr<ICustomer> customer);
+        void addArticle(shared_ptr<IArticle> article);
+        void showOrder();        
     private:
         string _code;
         shared_ptr<ICustomer> _customer;

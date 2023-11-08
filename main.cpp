@@ -17,10 +17,17 @@ int main()
     auto customer2 = make_shared<Customer>("C002", "Customer 2", "456 Secondary Street");
 
     // Create orders for customers
-    vector<shared_ptr<IArticle>> customer1Articles = {article1, article2}; //solo como ejemplo uso el typedef Article
+    vector<shared_ptr<IArticle>> customer1Articles = {article1, article2};
     vector<shared_ptr<IArticle>> customer2Articles = {article2};
-    auto orderCustomer1 = make_shared<Order>("O001", customer1, customer1Articles);
-    auto orderCustomer2 = make_shared<Order>("O002", customer2, customer2Articles);
+
+    auto orderCustomer1 = make_shared<Order>("O001");
+    orderCustomer1->setCustomer(customer1);
+    orderCustomer1->addArticle(article1);
+    orderCustomer1->addArticle(article2);
+
+    auto orderCustomer2 = make_shared<Order>("O002");
+    orderCustomer2->setCustomer(customer2);
+    orderCustomer2->addArticle(article2);
 
     // Store orders in a vector
     vector<shared_ptr<Order>> orders = {orderCustomer1, orderCustomer2};
